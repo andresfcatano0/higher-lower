@@ -8,7 +8,7 @@ let random;
 let maxNum;
 let userGuess = [];
 
-function initialCheck(){
+const initialCheck = () => {
 	while (valid === false) {
 		maxNum = Math.round(Number(prompt("Choose a maximum number")));
 		userInput.innerHTML = (maxNum);
@@ -19,8 +19,8 @@ function initialCheck(){
 	}
 }
 
-function inRange(){
-	if (guess.value == ""){
+const inRange = () => {
+	if (guess.value == "" || guess.value == " "){
 		//pass
 	} else if (guess.value < 1){
 		alert("That number is not in range, try again. (The guess you entered is less than 1)");
@@ -34,7 +34,7 @@ function inRange(){
 	}
 }
 
-function check(){
+const check = () => {
 	if (userGuess.includes(guess.value) == false ){
 		if (guess.value >= 1 && guess.value <= maxNum){
 			userGuess.push(guess.value)
@@ -49,16 +49,16 @@ button.addEventListener("click", function(){
 	let num = guess.value;
 	if (num == random){
 		check();
-		message.innerHTML = ("You got it! it took you " + userGuess.length + " tries and your guesses were " + userGuess.join(", "));
+		message.innerHTML = (`You got it! it took you ${userGuess.length} tries and your guesses were ${userGuess.join(", ")}`);
 		button.disabled = true;
 		button2.style.display = "inline"; 
-	} else if (guess.value == ""){
-		message.innerHTML = ('<p class="animate__animated animate__headShake">Please Enter a valid number</p>');
+	} else if (guess.value == "" || guess.value == " "){
+		message.innerHTML = (`<p class="animate__animated animate__headShake">Please Enter a valid number</p>`);
 	} else if (num < random){
-		message.innerHTML = ('<p class="animate__animated animate__headShake">No, try a higher number</p>');
+		message.innerHTML = (`<p class="animate__animated animate__headShake">No, try a higher number</p>`);
 		check();
 	} else if (num > random){
-		message.innerHTML = ('<p class="animate__animated animate__headShake">No, try a lower number</p>');
+		message.innerHTML = (`<p class="animate__animated animate__headShake">No, try a lower number</p>`);
 		check();
 	}
 })
@@ -70,8 +70,8 @@ button2.addEventListener("click", function(){
 	button2.style.display = "none"; 
 	guess.value = " ";
 	message.innerHTML = "";
-	initialCheck()
+	initialCheck();
 })
 
-initialCheck()
+initialCheck();
 
